@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product/product-list.component';
+import { ProductService } from './product/product.service';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ProductData } from './product/product-data';
 
 
 @NgModule({
@@ -12,9 +16,14 @@ import { ProductListComponent } from './product/product-list.component';
     ProductListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(ProductData),
   ],
-  providers: [],
+  providers: [
+    ProductService,
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
