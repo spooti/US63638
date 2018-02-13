@@ -10,7 +10,8 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ProductData } from './product/product-data';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductDetailComponent } from './product/product-detail.component';
-
+import { StoreModule } from '@ngrx/store';
+import { productReducer } from './reducers/product.reducer';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProductDetailComponent } from './product/product-detail.component';
     BrowserModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(ProductData),
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({products: productReducer})
   ],
   providers: [
     ProductService,
