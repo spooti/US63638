@@ -12,6 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductDetailComponent } from './product/product-detail.component';
 import { StoreModule } from '@ngrx/store';
 import { productReducer } from './reducers/product.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './effects/product.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { productReducer } from './reducers/product.reducer';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(ProductData),
     AppRoutingModule,
-    StoreModule.forRoot({products: productReducer})
+    StoreModule.forRoot({products: productReducer}),
+    EffectsModule.forRoot([ProductEffects]),
+    StoreDevtoolsModule.instrument({maxAge: 25})
   ],
   providers: [
     ProductService,

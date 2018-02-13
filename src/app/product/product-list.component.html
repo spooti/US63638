@@ -5,7 +5,7 @@
 
   <div class='panel-body'>
     <div class='table-responsive'>
-      <table class='table' *ngIf='products?.length'>
+      <table class='table' >
         <thead>
           <tr>
             <th>Product</th>
@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let product of products'>
+          <tr *ngFor='let product of products$ | async'>
             <td>
               <a [routerLink]="['', product.id]">
                 {{ product.productName }}

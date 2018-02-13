@@ -14,12 +14,12 @@ import * as productActions from '../actions/product.action';
 })
 export class ProductListComponent implements OnInit {
 
-  products$: Observable<any>;
+  products$: Observable<IProduct[]>;
   errorMessage: string;
   pageTitle: string = 'Products';
 
   constructor(private store: Store<AppState>) {
-    this.products$ = this.store.select(state => state.products);
+    
    }
 
   getProducts() {
@@ -28,6 +28,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
+    this.products$ = this.store.select(state => state.products);
   }
 
 }
