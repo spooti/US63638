@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from './product.service';
+import { IProduct } from './product';
+import { Store } from '@ngrx/store';
+import { AppState } from '../models/app-state';
+import { Observable } from 'rxjs/Observable';
+
+import * as productActions from '../actions/product.action';
 
 @Component({
   selector: 'app-product-list',
@@ -7,9 +14,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor() { }
+  products$: Observable<IProduct[]>;
+  errorMessage: string;
+  pageTitle: string = 'Products';
+
+  constructor(private store: Store<AppState>) {
+    
+   }
+
+  getProducts() {
+    this.store.dispatch(new productActions.LoadProductsAction());
+  }
 
   ngOnInit() {
+    this.getProducts();
+    this.products$ = this.store.select(state => state.products);
   }
 
 }
