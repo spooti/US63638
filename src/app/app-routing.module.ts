@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ProductListComponent } from './product/product-list.component';
+import { ProductDetailComponent } from './product/product-detail.component';
 
 
 
@@ -11,6 +12,7 @@ import { ProductListComponent } from './product/product-list.component';
                 path: '',
                 component: ProductListComponent
             },
+            { path: ':id', component: ProductDetailComponent },
             { path: '**', component: ProductListComponent }
         ]) // , { enableTracing: true })
     ],

@@ -24,6 +24,27 @@ export class ProductService {
       );
   }
 
+  getProduct(id: number): Observable<IProduct> {
+    if (id === 0) {
+      return of(this.initializeProduct());
+    }
+    const url = `${this.productsUrl}/${id}`;
+    return this.http.get<IProduct>(url)
+      .pipe(
+        tap(data => console.log('Data: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  private initializeProduct(): IProduct {
+    // Return an initialized object
+    return {
+      'id': 0,
+      productName: '',
+      productCode: ''
+    };
+  }
+
 
   private handleError(err: HttpErrorResponse): ErrorObservable {
     // in a real world app, we may send the server to some remote logging infrastructure

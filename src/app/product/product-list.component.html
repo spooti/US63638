@@ -15,7 +15,7 @@
         <tbody>
           <tr *ngFor='let product of products'>
             <td>
-              <a>
+              <a [routerLink]="['', product.id]">
                 {{ product.productName }}
               </a>
             </td>
